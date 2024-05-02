@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from 'src/services'
+import { useNavigate } from 'react-router-dom'
 
 const schema = z.object({
 	email: z.string().min(1, 'campo obrigatorio').email('email invalido'),
@@ -24,6 +25,7 @@ export const SignIn = () => {
 	const { getUser } = useUtil()
 	const { signin } = useAuth()
 	const { save } = useUser()
+	const navigate = useNavigate()
 
 	const onSubmit = async (data) => {
 		const { fullName, email, pwd } = data
@@ -31,7 +33,12 @@ export const SignIn = () => {
 		console.log(data)
 		const response = await api.post('/auth/signup', { password: pwd, name: fullName, email })
 		console.log(response)
-		// save(data)
+		if (response.data?.data?.AuthenticationResult?.AccessToken) {
+			const accessToken = response.data.data.AuthenticationResult.AccessToken
+			console.log(accessToken)
+			signin({ name: accessToken })
+			navigate('/auth/home')
+		}
 		// signin({ jwt: data.name })
 	}
 
@@ -86,7 +93,7 @@ export const SignIn = () => {
 						className="w-full mt-5 bg-pink-500 text-white rounded-md px-4 py-2 hover:bg-pink-600 focus:outline-none focus:bg-pink-600"
 						type="submit"
 					>
-						Logar
+						Criar conta
 					</button>
 				</form>
 			</section>
