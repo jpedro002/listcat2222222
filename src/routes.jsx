@@ -3,6 +3,7 @@ import { Auth, Public } from 'src/layout'
 import React from 'react'
 
 import Home from 'src/pages/private/home'
+import { SignIn } from './pages/public/signIn'
 
 //Auth
 
@@ -29,6 +30,7 @@ const routes = createBrowserRouter([
 		children: [
 			{ path: '', element: <Navigate to="login" /> },
 			{ path: 'login', element: <Login /> },
+			{ path: 'sign-in', element: <SignIn /> },
 			{ path: '404', element: <NotFound /> },
 			{ path: 'forbidden', element: <Forbidden /> },
 			{ path: '*', element: <Navigate to="404" /> },

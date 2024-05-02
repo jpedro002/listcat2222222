@@ -23,6 +23,7 @@ const Navbar = () => {
 
 const Auth = () => {
 	const { getUser } = useUtil()
+	console.log(getUser())
 	if (!getUser()) return <Navigate to="/login" replace />
 	return (
 		<section>
