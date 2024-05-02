@@ -2,29 +2,3 @@
   @tailwind components;
   @tailwind utilities;
   
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.max-container {
-  max-width: 1920px;
-  margin: 0 auto;
-}
-
-.content-container {
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-.bg-custom {
-    background: linear-gradient(to bottom, #bcbcf4, #f2f2ff);
-    background-color: #f2f2ff;
-}
-
-@layer utilities {
-  .padding-x {
-    @apply sm:px-8 px-4;
-  }
-}
